@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7ed3891-874a-4f37-8a63-745391428555" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Q206.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Q121.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Q937.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Q020.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q020.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,21 +13,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Q020.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Q206.py">
+        <entry file="file://$PROJECT_DIR$/Q121.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="20" selection-start-line="20" selection-end-line="41" selection-end-column="24" />
+            <state relative-caret-position="261">
+              <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -56,6 +47,8 @@
         <option value="$PROJECT_DIR$/Q053-2-value.py" />
         <option value="$PROJECT_DIR$/Q020.py" />
         <option value="$PROJECT_DIR$/Q206.py" />
+        <option value="$PROJECT_DIR$/Q937.py" />
+        <option value="$PROJECT_DIR$/Q121.py" />
       </list>
     </option>
   </component>
@@ -69,7 +62,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -81,6 +73,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -104,7 +97,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Q206">
+  <component name="RunManager" selected="Python.Q121">
     <configuration name="Q020" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python_leetcode_git" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -168,7 +161,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Q200" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Q121" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python_leetcode_git" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -180,7 +173,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Q200.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Q121.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -212,11 +205,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Q121" />
         <item itemvalue="Python.Q206" />
         <item itemvalue="Python.Q020" />
         <item itemvalue="Python.Q053-2-value" />
         <item itemvalue="Python.Q053" />
-        <item itemvalue="Python.Q200" />
       </list>
     </recent_temporary>
   </component>
@@ -316,13 +309,6 @@
     <entry file="file://$PROJECT_DIR$/Q004-sol.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Q053-2-value.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Q053-1-sequence.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -347,6 +333,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Q937.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Q020.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -356,8 +349,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Q206.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="20" selection-start-line="20" selection-end-line="41" selection-end-column="24" />
+        <state relative-caret-position="231">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q005-home-linear_programming.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q053-2-value.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="40" column="26" lean-forward="true" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q121.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
         </state>
       </provider>
     </entry>
