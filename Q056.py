@@ -27,14 +27,29 @@ from typing import List
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
 
+        if len(intervals) == 0:
+            return []
+
         sorted_i = sorted(intervals, key=lambda i: i[0])
         merged = []
+        current = sorted_i[0].copy()
 
-        for item in sorted_i:
+        for item in sorted_i[1:]:
+            if item[0] > current[1]:
+                merged.append(current)
+                current = item.copy()
+            else:
+                current[1] = max(current[1], item[1])
+
+        merged.append(current)
+
+        return merged
 
 
 
-
+a = [[1,4],[2,3]]
+sol = Solution()
+print(sol.merge(a))
 
 
 
