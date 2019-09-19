@@ -33,13 +33,16 @@ class Solution:
 
             i += 1
 
+            # read the value of repetition
             while "0" <= s[i] <= "9":
                 rep = rep*10 + int(s[i])
                 i += 1
 
+            # read the string to be repeated
             i += 1
             while 1:
                 if "1" <= s[i] <= "9":
+                    # recursion if there's embedded reps
                     temp, i = rep_func(i)
                     rep_str += temp
                 elif "a" <= s[i] <= "z" or "A" <= s[i] <= "Z":
