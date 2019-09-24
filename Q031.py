@@ -4,6 +4,8 @@ Medium
 
 Array;
 
+this solution passed but it's not in place!
+
 Implement next permutation, which rearranges numbers
 into the lexicographically next greater permutation of numbers.
 (that means the order in dictionary)
@@ -30,26 +32,26 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        def swap(i):
+            for j in range(i+1, total):
+                if nums[i] < nums[j]:
+                    nums[i], nums[j] = nums[j], nums[i]
+                    return j
+            return False
 
         total = len(nums)
 
-        for i in reversed(range(1, total)):
-
-            if nums[i] > nums[i-1]:
-                nums[i], nums[i-1] = nums[i-1], nums[i]
+        for i in reversed(range(0, total-1)):
+            # swap if the previous value is smaller
+            # than any of the past values
+            # and choose the smallest past value
+            if swap(i):
                 break
-
-            for j in range(i, total):
-                if nums[i] < nums[j]:
-                    nums[i], nums[j] = nums[j], nums[i]
-                    break
-
-            for j in range(i, total):
-                if nums[j-1] > nums[j]:
-                    nums[j-1], nums[j] = nums[j], nums[j-1]
+            # sort the numbers after
+            nums[i:] = sorted(nums[i:])
 
 
-a = [2, 3, 1]
+a = [1,1,1]
 
 sol = Solution()
 sol.nextPermutation(a)
