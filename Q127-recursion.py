@@ -7,6 +7,17 @@ Medium
 Topic:
 BFS
 
+11/11 notes:
+strange thing:
+for the case:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log"]
+
+My code returned 0 on my local computer. It says 0 in run-code.
+But it returns 5 if I submit.
+
+
 Given two words (beginWord and endWord), and a dictionary's word list,
 find the length of shortest transformation sequence from beginWord to
 endWord, such that:
@@ -26,6 +37,8 @@ from typing import List
 
 class Solution:
 
+    trans_lengths = []
+
     @staticmethod
     def canTransform(word1: str, word2: str) -> bool:
         # return True if word1 can be transformed into word2
@@ -34,37 +47,41 @@ class Solution:
             if word1[i] != word2[i]:
                 count += 1
 
-        if count == 0:
+        if count == 1:
             return True
         else:
             return False
 
+    def find_next(self,
+                  current_word: str,
+                  endWord: str,
+                  word_list: List[str],
+                  cnt: int):
+
+        for item in word_list:
+            if self.canTransform(current_word, item):
+                if item == endWord:
+                    self.trans_lengths.append(cnt+1)
+                    continue
+                else:
+                    new_list = word_list.copy()
+                    new_list.remove(item)
+                    self.find_next(item, endWord, new_list, cnt+1)
+
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
 
-        length = len(wordList)
-        used_marker = [0] * length
-        trans_string = []
-        count = 0
+        self.find_next(beginWord, endWord, wordList, 1)
+        if len(self.trans_lengths) == 0:
+            return 0
+        else:
+            return min(self.trans_lengths)
 
-        current = beginWord.copy()
+beginWord = "h"
+endWord = "n"
+wordList = ["c"]
 
-        i = 0
-        while(1):
-
-            # ending condition
-            if current == endWord:
-                return count
-
-            if used_marker[i] == 0 and self.canTransform(wordList[i],
-                                                         current):
-                count += 1
-                current = wordList[i]
-                used_marker[i] = 1
-                trans_string.append(current)
-
-            i += 1
-
-
+sol = Solution()
+print(sol.ladderLength(beginWord, endWord, wordList))
 
 
 
