@@ -1,81 +1,59 @@
 """
-Q127 Word Ladder
-Medium
-
-11/11/2019
-
-Topic:
-BFS
-
-11/11 notes:
-strange thing:
-for the case:
-beginWord = "hit"
-endWord = "cog"
-wordList = ["hot","dot","dog","lot","log"]
-
-My code returned 0 on my local computer. It says 0 in run-code.
-But it returns 5 if I submit.
-
-
-Given two words (beginWord and endWord), and a dictionary's word list,
-find the length of shortest transformation sequence from beginWord to
-endWord, such that:
-1. Only one letter can be changed at a time.
-2. Each transformed word must exist in the word list. Note that
-beginWord is not a transformed word.
-
-Note:
-- Return 0 if there is no such transformation sequence.
-- All words have the same length.
-- All words contain only lowercase alphabetic characters.
-- You may assume no duplicates in the word list.
-- You may assume beginWord and endWord are non-empty and are not the same.
+found on leetcode Q127 solution
+why I have this:
+I want to learn why this is so fast.
+iterative.
 """
+import collections
+from collections import defaultdict
 
-from typing import List
+class Solution(object):
+    def ladderLength(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: int
+        """
 
-class Solution:
-
-    def __init__(self):
-        self.trans_lengths = []
-
-    @staticmethod
-    def canTransform(word1: str, word2: str) -> bool:
-        # return True if word1 can be transformed into word2
-        count = 0
-        for i in range(0, len(word1)):
-            if word1[i] != word2[i]:
-                count += 1
-
-        if count == 1:
-            return True
-        else:
-            return False
-
-    def find_next(self,
-                  current_word: str,
-                  endWord: str,
-                  word_list: List[str],
-                  cnt: int):
-
-        for item in word_list:
-            if self.canTransform(current_word, item):
-                if item == endWord:
-                    self.trans_lengths.append(cnt+1)
-                    continue
-                else:
-                    new_list = word_list.copy()
-                    new_list.remove(item)
-                    self.find_next(item, endWord, new_list, cnt+1)
-
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-
-        self.find_next(beginWord, endWord, wordList, 1)
-        if len(self.trans_lengths) == 0:
+        if endWord not in wordList or not endWord or not beginWord or not wordList:
             return 0
-        else:
-            return min(self.trans_lengths)
+
+        # Since all words are of same length.
+        L = len(beginWord)
+
+        # Dictionary to hold combination of words that can be formed,
+        # from any given word. By changing one letter at a time.
+        all_combo_dict = defaultdict(list)
+        for word in wordList:
+            for i in range(L):
+                # Key is the generic word
+                # Value is a list of words which have the same intermediate generic word.
+                all_combo_dict[word[:i] + "*" + word[i+1:]].append(word)
+
+
+        # Queue for BFS
+        queue = collections.deque([(beginWord, 1)])
+        # Visited to make sure we don't repeat processing same word.
+        visited = {beginWord: True}
+        while queue:
+            current_word, level = queue.popleft()
+            for i in range(L):
+                # Intermediate words for current word
+                intermediate_word = current_word[:i] + "*" + current_word[i+1:]
+
+                # Next states are all the words which share the same intermediate state.
+                for word in all_combo_dict[intermediate_word]:
+                    # If at any point if we find what we are looking for
+                    # i.e. the end word - we can return with the answer.
+                    if word == endWord:
+                        return level + 1
+                    # Otherwise, add it to the BFS Queue. Also mark it visited
+                    if word not in visited:
+                        visited[word] = True
+                        queue.append((word, level + 1))
+                all_combo_dict[intermediate_word] = []
+        return 0
 
 def run():
     sol = Solution()
@@ -95,15 +73,3 @@ if __name__ == "__main__":
 
     import cProfile
     cProfile.run('run()')
-
-
-
-
-
-
-
-
-
-
-
-
