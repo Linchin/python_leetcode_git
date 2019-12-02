@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7ed3891-874a-4f37-8a63-745391428555" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Q010-v2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Q010-v3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Q010.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Q039.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Q044.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Q605.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Q037.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q037.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
