@@ -22,10 +22,8 @@ Follow up:
 Could you do both operations in O(1) time complexity?
 
 notes:
-linkded list + dict(hash map)
-
+linked list + dict(hash map)
 """
-
 
 
 class LRUCache:
@@ -67,14 +65,63 @@ class LRUCache:
             self.hash[key].next.prev = self.hash[key].prev
         # remove the node from hash table
         del self.hash[key]
-        
+
     def get(self, key: int) -> int:
         if key not in self.hash:
             return -1
+        # move the inquired node to the last of the linked list
+        if self.hash[key].prev is not None:
+            self.hash[key].prev.next = self.hash[key].next
+        if self.hash[key].next is not None:
+            self.hash[key].next.prev = self.hash[key].prev
+        self.tail.next = self.hash[key]
+        self.hash[key].next = None
+        self.hash[key].prev = self.tail
+        self.tail = self.hash[key]
+        return self.hash[key].val
 
     def put(self, key: int, value: int) -> None:
+        self.hash[key] = self.Node(key, value)
+        if self.size < self.cap:
+            # capacity not reached, just add new node
+            if self.tail is not None:
+                self.tail.next = self.hash[key]
+                self.hash[key].prev = self.tail
+            self.tail = self.hash[key]
+            self.size += 1
+        else:
+            # capacity reached, need to remove LRU node
+            if self.tail is not None:
+                self.tail.next = self.hash[key]
+            self.hash[key].prev = self.tail
+            self.tail = self.hash[key]
+            if self.head is not None:
+                first = self.head.key
+                self.head = self.hash[first].next
+                self.head.prev = None
+                del self.hash[first]
+            else:
+                self.head = self.hash[key]
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
 # obj.put(key,value)
+
+capacity = 2
+cache = LRUCache(capacity)
+cache.put(1,1)
+cache.put(2,2)
+print(cache.get(1))
+cache.put(3,3)
+print(cache.get(2))
+
+
+
+
+
+
+
+
+
+
