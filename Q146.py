@@ -42,66 +42,67 @@ class LRUCache:
         self.head = None
         self.tail = None
 
-    def add(self, key: int, value: int):
-        # add a node to the end
-        self.hash[key] = self.Node(key, value)
-        self.tail = self.hash[key]
-        self.size += 1
-
-    def remove(self, key: int):
-        # remove a node
-        # if the node is 1st
-        if self.hash[key].prev is None:
-            self.size -= 1
-            self.head = self.hash[key].next
-        # if the node is last
-        elif self.hash[key].next is None:
-            self.size -= 1
-            self.head = self.hash[key].prev
-        # if the node is in the middle
-        else:
-            self.size -= 1
-            self.hash[key].prev.next = self.hash[key].next
-            self.hash[key].next.prev = self.hash[key].prev
-        # remove the node from hash table
-        del self.hash[key]
-
     def get(self, key: int) -> int:
         if key not in self.hash:
             return -1
-        # move the inquired node to the last of the linked list
+
+        # if the inquired node is the last/only node
+        if self.hash[key].next is None:
+            return self.hash[key].val
+
+        # AT LEAST 2 NODES
+        # move the inquired node to the end of the linked list
+
+        # handle head and tail of the linked list
+        if self.head == self.hash[key]:
+            self.head = self.head.next
+        last = self.tail.key
+        self.tail.next = self.hash[key]
+        self.tail = self.hash[key]
+
+        # connect the nodes before and after the inquired node
         if self.hash[key].prev is not None:
             self.hash[key].prev.next = self.hash[key].next
         if self.hash[key].next is not None:
             self.hash[key].next.prev = self.hash[key].prev
-        self.tail.next = self.hash[key]
+
+        # update the prev/next node of the inquired node
+        self.hash[key].prev = self.hash[last]
         self.hash[key].next = None
-        self.hash[key].prev = self.tail
-        self.tail = self.hash[key]
+
         return self.hash[key].val
 
     def put(self, key: int, value: int) -> None:
+
+        # if the key exists
+        if key in self.hash:
+            self.hash[key].val = value
+            self.get(key)
+            return 0
+
+        # if key is new
         self.hash[key] = self.Node(key, value)
-        if self.size < self.cap:
-            # capacity not reached, just add new node
-            if self.tail is not None:
-                self.tail.next = self.hash[key]
-                self.hash[key].prev = self.tail
+
+        if self.size == 0:
+            # first node
+            self.head = self.tail = self.hash[key]
+            self.size = 1
+        elif self.size < self.cap:
+            # capacity not reached, just add new node to the end
+            self.tail.next = self.hash[key]
+            self.hash[key].prev = self.tail
             self.tail = self.hash[key]
             self.size += 1
         else:
             # capacity reached, need to remove LRU node
-            if self.tail is not None:
-                self.tail.next = self.hash[key]
+            self.tail.next = self.hash[key]
             self.hash[key].prev = self.tail
             self.tail = self.hash[key]
-            if self.head is not None:
-                first = self.head.key
-                self.head = self.hash[first].next
-                self.head.prev = None
-                del self.hash[first]
-            else:
-                self.head = self.hash[key]
+            first = self.head.key
+            self.head = self.head.next
+            self.head.prev = None
+            del self.hash[first]
+
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
@@ -115,12 +116,10 @@ cache.put(2,2)
 print(cache.get(1))
 cache.put(3,3)
 print(cache.get(2))
-
-
-
-
-
-
+cache.put(4,4)
+print(cache.get(1))
+print(cache.get(3))
+print(cache.get(4))
 
 
 
