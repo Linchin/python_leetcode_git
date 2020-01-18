@@ -17,29 +17,13 @@ class Solution:
         N = len(workers)
         M = len(bikes)
 
-        dist_dict = {}
-        for i in range(0, N):
-            for j in range(0, M):
-                dist_dict[i, j] = abs(workers[i][0] - bikes[j][0]) + \
-                                  abs(workers[i][1] - bikes[j][1])
+        total = 0
+        i = 0
+        while True:
+            
 
-        def dist_cal(pairs: List):
-            # return the total Manhattan distance given the pairing
-            total = 0
-            for i in range(0, N):
-                total += dist_dict[i, pairs[i]]
-            return total
-
-        min_dist = None
-
-        for perm in permutations(range(0, M), N):
-            if not min_dist:
-                min_dist = dist_cal(perm)
-            else:
-                min_dist = min(min_dist, dist_cal(perm))
 
         return min_dist
-
 
 
 sol = Solution()
