@@ -1,6 +1,7 @@
 """
-Leetcode Question #146
+Q146
 LRU Cache
+Medium
 
 Author: Lingqing Gan
 Date: 08/06/2019
@@ -23,6 +24,11 @@ Could you do both operations in O(1) time complexity?
 
 notes:
 linked list + dict(hash map)
+
+12/24/2019
+Merry Xmas~~
+Now the code I wrote is working correctly. Just not very efficient.
+Time to learn how the tutorial did it.
 """
 
 

@@ -1,11 +1,11 @@
 """
-Q107
-Binary Tree Level Order Traversal II
+Q637
+Average of Levels in Binary Tree
 Easy
 
-Given a binary tree, return the bottom-up level order
-traversal of its nodes' values. (ie, from left to right,
-level by level from leaf to root).
+
+Given a non-empty binary tree, return the average value of the
+nodes on each level in the form of an array.
 """
 
 from typing import List
@@ -18,7 +18,7 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+    def averageOfLevels(self, root: TreeNode) -> List[float]:
 
         levels = []
 
@@ -33,4 +33,16 @@ class Solution:
 
         read_level(root, 1)
 
-        return levels[::-1]
+        ave = []
+        for val in levels:
+            ave.append(sum(val)/len(val))
+
+        return ave
+
+
+
+
+
+
+
+
