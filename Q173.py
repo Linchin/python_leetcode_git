@@ -29,36 +29,28 @@ class BSTIterator:
 
     def __init__(self, root: TreeNode):
         self.q = [root]
-        if root is not None:
-            self.hasnext = True
-        else:
-            self.hasnext = False
-        self.current = self.q[-1]
-        while self.current.left is not None:
-            self.current = self.current.left
-            self.q.append(self.current)
+        if not root:
+            self.q = []
+            return
+        current = self.q[-1]
+        while current.left is not None:
+            current = current.left
+            self.q.append(current)
 
     def next(self) -> int:
         """
         @return the next smallest number
         """
-        if not self.q:
-            return None
 
-        current = self.current
+        current = self.q.pop()
 
         # find the next smallest value
-        if self.current.right is not None:
-            self.q.append(self.current.right)
-            self.current = self.q[-1]
-            while self.current.left is not None:
-                self.current = self.current.left
-                self.q.append(self.current)
-        else:
-            if not self.q:
-                self.hasnext = False
-            else:
-                self.current = self.q[-1]
+        if current.right is not None:
+            self.q.append(current.right)
+            temp = self.q[-1]
+            while temp.left is not None:
+                temp = temp.left
+                self.q.append(temp)
 
         return current.val
 
@@ -67,7 +59,7 @@ class BSTIterator:
         """
         @return whether we have a next smallest number
         """
-        return self.hasnext
+        return len(self.q) > 0
 
 
 # Your BSTIterator object will be instantiated and called as such:
@@ -75,4 +67,23 @@ class BSTIterator:
 # param_1 = obj.next()
 # param_2 = obj.hasNext()
 
+a1 = TreeNode(7)
+a2 = TreeNode(3)
+a3 = TreeNode(15)
+a4 = TreeNode(9)
+a5 = TreeNode(20)
+
+a1.left = a2
+a1.right = a3
+a3.left = a4
+a3.right = a5
+
+iterator = BSTIterator(a1)
+print(iterator.hasNext())
+print(iterator.next())
+print(iterator.next())
+print(iterator.next())
+print(iterator.next())
+print(iterator.next())
+print(iterator.hasNext())
 
