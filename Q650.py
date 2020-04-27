@@ -22,3 +22,17 @@ Output the minimum number of steps to get n 'A'.
 
 class Solution:
     def minSteps(self, n: int) -> int:
+
+        factors = []
+        while n > 1:
+            for i in range(2, int(n+1)):
+                if n % i == 0:
+                    factors.append(i)
+                    n /= i
+                    break
+
+        return sum(factors)
+
+
+sol = Solution()
+print(sol.minSteps(6))
