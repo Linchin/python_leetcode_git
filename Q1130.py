@@ -81,12 +81,30 @@ print(sol2.mctFromLeafValues(arr))
 
 
 
+class Solution_stack:
+    def mctFromLeafValues(self, arr: List[int]) -> int:
+
+        stack = [float('inf')]
+        res = 0
+
+        for item in arr:
+            while item >= stack[-1]:
+                current = stack.pop()
+                res += min(stack[-1] * current, item * current)
+            stack.append(item)
+
+        while len(stack) > 2:
+            res += stack.pop() * stack[-1]
+
+        return res
+
+sol3 = Solution_stack()
+arr = [6,2,4]
+print(sol3.mctFromLeafValues(arr))
 
 
 
 
-#
-#
-# class Solution_stack:
-#     def mctFromLeafValues(self, arr: List[int]) -> int:
+
+
 
