@@ -1,3 +1,29 @@
+"""
+Q167
+Two Sum II - input array is sorted
+Easy
+
+Array/TwoPointers/BinarySearch
+
+Given an array of integers that is already sorted
+in ascending order, find two numbers such that they
+add up to a specific target number.
+
+The function twoSum should return indices of the
+two numbers such that they add up to the target,
+where index1 must be less than index2.
+
+Note:
+
+- Your returned answers (both index1 and index2)
+  are not zero-based.
+- You may assume that each input would have exactly
+  one solution and you may not use the same element
+  twice.
+"""
+
+# 2018 solution
+
 __author__ = 'linchin'
 class Solution1:
     # brute force
@@ -46,10 +72,38 @@ class Solution2:
 
         return [i+1, j+1]
 
-
-
-
-
 sol = Solution2()
 
 print(sol.twoSum([2,7,11,15],9))
+
+# 05/25/2020
+# refresh
+
+from typing import List
+
+class Solution3:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        lo = 0
+        hi = len(numbers)-1
+
+        while numbers[lo] + numbers[hi] != target:
+            if numbers[lo] + numbers[hi] > target:
+                hi -= 1
+            else:
+                lo += 1
+
+        return [lo+1, hi+1]
+
+nums = [2, 7, 11, 15]
+target = 9
+sol2 = Solution3()
+print(sol2.twoSum(nums, target))
+
+
+
+
+
+
+
+
+
